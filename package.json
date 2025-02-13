@@ -1,0 +1,20 @@
+{
+  "name": "virtual_teacher",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "node-vad": "^1.1.4",
+    "puppeteer": "^24.2.0",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/puppeteer": "^7.0.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
+  }
+}
