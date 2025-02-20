@@ -7,6 +7,11 @@ const unlinkAsync = promisify(unlink);
 
 export class WhisperCppTranscriber implements SpeechTranscriber {
   private static readonly TEMPORARY_FILE_PATH = "./tmp/userVoice.wav";
+  private static readonly TRIM_STRINGS = [
+    "[BLANK_AUDIO]",
+    "[SILENCE]",
+    "[ SILENCE ]",
+  ];
 
   async transcribe(buffer: Buffer): Promise<string> {
     try {
@@ -49,7 +54,11 @@ export class WhisperCppTranscriber implements SpeechTranscriber {
             .replace(/\[\d+:\d+:\d+\.\d+ --> \d+:\d+:\d+\.\d+\] /g, "")
             .trim();
 
-          return cleanedLine === "[BLANK_AUDIO]" ? "" : cleanedLine;
+          return WhisperCppTranscriber.TRIM_STRINGS.includes(
+            cleanedLine.toLocaleUpperCase(),
+          )
+            ? ""
+            : cleanedLine;
         })
         .filter((s) => s.length > 0) // Filter out empty strings
         .join(" ");

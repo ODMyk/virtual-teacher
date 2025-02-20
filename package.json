@@ -4,6 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.7.9",
     "node-vad": "^1.1.4",
     "puppeteer": "^24.2.0",
     "tsconfig-paths": "^4.2.0"
